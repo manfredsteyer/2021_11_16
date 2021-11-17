@@ -26,7 +26,8 @@
       ],
       "@flight-workspace/passenger/feature-edit": [
         "libs/passenger/feature-edit/src/index.ts"
-      ]
+      ],
+      "@flight-workspace/luggage/domain": ["libs/luggage/domain/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

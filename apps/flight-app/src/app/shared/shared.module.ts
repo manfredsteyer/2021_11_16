@@ -2,6 +2,7 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {ModuleWithProviders} from '@angular/core';
 import {CityPipe} from './pipes/city.pipe';
+import { ClickWithWarningDirective } from './click-with-warning.directive';
 
 @NgModule({
   imports: [
@@ -9,9 +10,11 @@ import {CityPipe} from './pipes/city.pipe';
   ],
   declarations: [
     CityPipe,
+    ClickWithWarningDirective,
   ],
   exports: [
-    CityPipe
+    CityPipe,
+    ClickWithWarningDirective
   ]
 })
 export class SharedModule {

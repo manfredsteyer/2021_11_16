@@ -1,7 +1,7 @@
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {Flight} from '../models/flight';
 
 
@@ -12,6 +12,10 @@ export class FlightService {
 
   flights: Flight[] = [];
   baseUrl = `http://www.angular.at/api`;
+
+  private flightsSubject = new BehaviorSubject<Flight[]>([]);
+  readonly flights$ = this.flightsSubject.asObservable()
+
   // baseUrl = `http://localhost:3000`;
 
   reqDelay = 1000;
@@ -24,6 +28,7 @@ export class FlightService {
       .subscribe(
         flights => {
           this.flights = flights;
+          this.flightsSubject.next(flights);
         },
         err => console.error('Error loading flights', err)
       );
@@ -74,8 +79,17 @@ export class FlightService {
     const oldDate = new Date(oldFlight.date);
 
     // Mutable
-    oldDate.setTime(oldDate.getTime() + 15 * ONE_MINUTE);
-    oldFlight.date = oldDate.toISOString();
+    // oldDate.setTime(oldDate.getTime() + 15 * ONE_MINUTE);
+    // oldFlight.date = oldDate.toISOString();
+
+    const newDate = new Date(oldDate.getTime() + 15 * ONE_MINUTE);
+    const newFlight: Flight = { ...oldFlight, date: newDate.toISOString() }
+    const newFlights: Flight[] = [newFlight, ...oldFlights.slice(1)];
+
+    this.flights = newFlights;
+    this.flightsSubject.next(this.flights);
+
+
   }
 
 }

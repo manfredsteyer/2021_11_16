@@ -14,6 +14,8 @@ export class FlightSearchComponent implements OnInit {
   to = 'Graz'; // in Austria
   urgent = false;
 
+  flights$ = this.flightService.flights$;
+
   get flights() {
     return this.flightService.flights;
   }

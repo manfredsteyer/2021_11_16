@@ -1,7 +1,7 @@
 {
   "npmScope": "flight-workspace",
   "affected": {
-    "defaultBase": "master"
+    "defaultBase": "main"
   },
   "implicitDependencies": {
     "angular.json": "*",
@@ -85,6 +85,9 @@
     },
     "passenger-feature-edit": {
       "tags": ["domain:passenger", "type:feature"]
+    },
+    "luggage-domain": {
+      "tags": ["domain:luggage", "type:domain-logic"]
     }
   }
 }
